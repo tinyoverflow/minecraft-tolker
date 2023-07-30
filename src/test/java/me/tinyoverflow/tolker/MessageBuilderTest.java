@@ -7,8 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -22,7 +20,8 @@ class MessageBuilderTest
         MemoryBag bag = new MemoryBag();
         bag.addMessage("demo", "First <text> Message");
         bag.addMessage("number", "Price: $<price:'en-US':'#.00'>");
-        bag.addMessage("date", "Christmas: $<date:'dd.MM.yyyy'>");
+        bag.addMessage("date", "Christmas: <date:'dd.MM.yyyy'>");
+        bag.addMessage("choice", "I met <choice:'0#no developer|1#one developer|1<many developers'>!");
 
         tolker = new Tolker(bag);
         tolker.registerDefaultSerializers();
@@ -39,7 +38,8 @@ class MessageBuilderTest
     }
 
     @Test
-    void buildWithNumberFormatter() {
+    void buildWithNumberFormatter()
+    {
         Component component = tolker.build("number")
                 .withNumber("price", 15)
                 .build();
@@ -48,11 +48,28 @@ class MessageBuilderTest
     }
 
     @Test
-    void buildWithDateFormatter() {
+    void buildWithDateFormatter()
+    {
         Component component = tolker.build("date")
                 .withDate("date", LocalDate.of(2023, 12, 24))
                 .build();
 
         assertEquals("Christmas: 24.12.2023", PlainTextComponentSerializer.plainText().serialize(component));
+    }
+
+    @Test
+    void buildWithChoiceFormatter()
+    {
+        assertEquals("I met no developer!", PlainTextComponentSerializer.plainText().serialize(tolker.build("choice")
+                .withChoice("choice", 0)
+                .build()));
+
+        assertEquals("I met one developer!", PlainTextComponentSerializer.plainText().serialize(tolker.build("choice")
+                .withChoice("choice", 1)
+                .build()));
+
+        assertEquals("I met many developers!", PlainTextComponentSerializer.plainText().serialize(tolker.build("choice")
+                .withChoice("choice", 2)
+                .build()));
     }
 }
