@@ -8,6 +8,13 @@
 Tolker is an easy-to-use messaging library for Paper. It provides you an
 interface which allows you to easily compose messages with placeholders in them.
 
+- [Installation](#installation)
+  - [Install using Maven](#install-using-maven)
+- [Usage](#usage)
+  - [Message Format](#message-format)
+  - [Instantiating Tolker](#instantiating-tolker)
+  - [Custom Type Serializers](#custom-type-serializers)
+
 ## Installation
 
 Simply add the package `me.tinyoverflow:tolker:<version>` to your project. While
