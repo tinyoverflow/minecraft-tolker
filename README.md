@@ -21,7 +21,9 @@ this package is available on GitHub Packages, it is recommended to use JitPack.
     <id>jitpack.io</id>
     <url>https://jitpack.io</url>
 </repository>
+```
 
+```xml
 <!-- Dependency -->
 <dependency>
     <groupId>com.github.User</groupId>
@@ -101,3 +103,28 @@ class MyPlugin extends JavaPlugin implements Listener
     }
 }
 ```
+
+### Custom Type Serializers
+
+Tolker supports custom type serializers. To add a custom one, create a class
+which extends the `TypeSerializer<T>` interface. Here's an example for a
+serializer for the UUID object:
+
+```java
+public class UUIDSerializer implements TypeSerializer<UUID>
+{
+    public @NotNull Component serialize(@NotNull UUID obj)
+    {
+        return Component.text(obj.toString());
+    }
+}
+```
+
+After creating it, register it to Tolker after it was instantiated:
+
+```java
+Tolker tolker = new Tolker(/* Message Bag */);
+tolker.registerSerializer(UUID.class, new UUIDSerializer());
+```
+
+You can now pass UUID objects as a value to the `MessageBuilder#with` method.
