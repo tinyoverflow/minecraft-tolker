@@ -8,7 +8,6 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Formatter;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.minimessage.tag.resolver.TagResolver;
-import org.jetbrains.annotations.NotNull;
 
 import java.time.temporal.TemporalAccessor;
 import java.util.HashSet;
@@ -29,34 +28,12 @@ public class MessageBuilder
         this.message = message;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> MessageBuilder with(String key, T value)
     {
-        TypeSerializer<T> serializer = getTypeSerializer(value);
-        replacements.add(Placeholder.component(key, serializer.serialize(value)));
+        TypeSerializer<T> serializer1 = (TypeSerializer<T>) serializerMap.get(value.getClass());
 
-        return this;
-    }
-
-    public <T extends Number> MessageBuilder withNumber(String key, T value)
-    {
-        replacements.add(Formatter.number(key, value));
-
-        return this;
-    }
-
-    public <T extends TemporalAccessor> MessageBuilder withDate(String key, T value)
-    {
-        replacements.add(Formatter.date(key, value));
-
-        return this;
-    }
-
-    @NotNull
-    private <T> TypeSerializer<T> getTypeSerializer(T value)
-    {
-        TypeSerializer<T> serializer = (TypeSerializer<T>) serializerMap.get(value.getClass());
-
-        if (serializer == null)
+        if (serializer1 == null)
         {
             Class<?>[] interfaces = value.getClass().getInterfaces();
 
@@ -64,17 +41,37 @@ public class MessageBuilder
             {
                 if (serializerMap.containsKey(interfaze))
                 {
-                    serializer = (TypeSerializer<T>) serializerMap.get(interfaze);
+                    serializer1 = (TypeSerializer<T>) serializerMap.get(interfaze);
                     break;
                 }
             }
 
-            if (serializer == null)
+            if (serializer1 == null)
             {
                 throw new MissingSerializerException(value.getClass());
             }
         }
-        return serializer;
+
+        TypeSerializer<T> serializer = serializer1;
+        replacements.add(Placeholder.component(key, serializer.serialize(value)));
+        return this;
+    }
+
+    public MessageBuilder withNumber(String key, Number value)
+    {
+        replacements.add(Formatter.number(key, value));
+        return this;
+    }
+
+    public MessageBuilder withDate(String key, TemporalAccessor value)
+    {
+        replacements.add(Formatter.date(key, value));
+        return this;
+    }
+
+    public MessageBuilder withChoice(String key, Number value) {
+        replacements.add(Formatter.choice(key, value));
+        return this;
     }
 
     public Component build()
