@@ -1,5 +1,6 @@
 package me.tinyoverflow.tolk;
 
+import me.tinyoverflow.tolk.exceptions.MissingSerializerException;
 import me.tinyoverflow.tolk.serializer.TypeSerializer;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
@@ -28,7 +29,7 @@ public class MessageBuilder
     {
         if (!serializerMap.containsKey(value.getClass()))
         {
-            throw new IllegalArgumentException("Class has no serializer.");
+            throw new MissingSerializerException(value.getClass());
         }
 
         //noinspection unchecked

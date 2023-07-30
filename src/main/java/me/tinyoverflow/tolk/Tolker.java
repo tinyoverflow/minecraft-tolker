@@ -19,8 +19,6 @@ public class Tolker
     public Tolker(MessageBag messageBag)
     {
         this.messageBag = messageBag;
-
-        registerSerializer(Integer.class, new IntegerSerializer());
     }
 
     public <T> void registerSerializer(Class<T> type, TypeSerializer<? super T> serializer) {
