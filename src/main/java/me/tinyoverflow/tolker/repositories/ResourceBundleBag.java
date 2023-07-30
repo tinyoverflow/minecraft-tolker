@@ -1,24 +1,28 @@
-package me.tinyoverflow.tolk.repositories;
+package me.tinyoverflow.tolker.repositories;
 
-import me.tinyoverflow.tolk.exceptions.UnknownMessageKeyException;
+import me.tinyoverflow.tolker.exceptions.UnknownMessageKeyException;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ResourceBundle;
 
-public class MemoryBag implements MessageBag
+@SuppressWarnings("unused")
+public class ResourceBundleBag implements MessageBag
 {
     private final Map<String, String> messages = new HashMap<>();
 
     /**
-     * Adds a message to the in-memory message bag.
+     * Load all messages from a resource bundle.
      *
-     * @param key   The key for the message.
-     * @param value The plaintext message itself to add.
+     * @param resourceBundle The bundle to read messages from.
      */
-    public void addMessage(String key, String value)
+    public ResourceBundleBag(ResourceBundle resourceBundle)
     {
-        messages.put(key, value);
+        for (String key : resourceBundle.keySet())
+        {
+            messages.put(key, resourceBundle.getString(key));
+        }
     }
 
     @Override

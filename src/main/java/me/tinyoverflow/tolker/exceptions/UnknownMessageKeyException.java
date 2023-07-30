@@ -1,4 +1,4 @@
-package me.tinyoverflow.tolk.exceptions;
+package me.tinyoverflow.tolker.exceptions;
 
 public class UnknownMessageKeyException extends IllegalArgumentException
 {

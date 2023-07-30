@@ -1,4 +1,4 @@
-package me.tinyoverflow.tolk.serializer;
+package me.tinyoverflow.tolker.serializer;
 
 import net.kyori.adventure.text.Component;
 import org.bukkit.OfflinePlayer;

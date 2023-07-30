@@ -1,6 +1,6 @@
-package me.tinyoverflow.tolk.repositories;
+package me.tinyoverflow.tolker.repositories;
 
-import me.tinyoverflow.tolk.exceptions.UnknownMessageKeyException;
+import me.tinyoverflow.tolker.exceptions.UnknownMessageKeyException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

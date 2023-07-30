@@ -1,7 +1,7 @@
-package me.tinyoverflow.tolk;
+package me.tinyoverflow.tolker;
 
-import me.tinyoverflow.tolk.repositories.MessageBag;
-import me.tinyoverflow.tolk.serializer.*;
+import me.tinyoverflow.tolker.repositories.MessageBag;
+import me.tinyoverflow.tolker.serializer.*;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;

@@ -1,6 +1,6 @@
-package me.tinyoverflow.tolk;
+package me.tinyoverflow.tolker;
 
-import me.tinyoverflow.tolk.repositories.MemoryBag;
+import me.tinyoverflow.tolker.repositories.MemoryBag;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
 import org.junit.jupiter.api.BeforeEach;

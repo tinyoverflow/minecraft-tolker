@@ -1,7 +1,7 @@
-package me.tinyoverflow.tolk;
+package me.tinyoverflow.tolker;
 
-import me.tinyoverflow.tolk.exceptions.MissingSerializerException;
-import me.tinyoverflow.tolk.serializer.TypeSerializer;
+import me.tinyoverflow.tolker.exceptions.MissingSerializerException;
+import me.tinyoverflow.tolker.serializer.TypeSerializer;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
@@ -25,15 +25,26 @@ public class MessageBuilder
         this.message = message;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> MessageBuilder with(String key, T value)
     {
-        if (!serializerMap.containsKey(value.getClass()))
-        {
-            throw new MissingSerializerException(value.getClass());
-        }
-
-        //noinspection unchecked
         TypeSerializer<T> serializer = (TypeSerializer<T>) serializerMap.get(value.getClass());
+
+        if (serializer == null)
+        {
+            Class<?>[] interfaces = value.getClass().getInterfaces();
+
+            for (Class<?> interfaze : interfaces) {
+                if (serializerMap.containsKey(interfaze)) {
+                    serializer = (TypeSerializer<T>) serializerMap.get(interfaze);
+                    break;
+                }
+            }
+
+            if (serializer == null) {
+                throw new MissingSerializerException(value.getClass());
+            }
+        }
 
         //noinspection PatternValidation
         replacements.add(Placeholder.component(key, serializer.serialize(value)));
