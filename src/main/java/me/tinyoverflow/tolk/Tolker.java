@@ -45,7 +45,7 @@ public class Tolker
         registerSerializer(World.class, new WorldSerializer());
     }
 
-    public MessageBuilder getMessageBuilder(String messageKey) {
+    public MessageBuilder build(String messageKey) {
         return new MessageBuilder(serializerMap, messageBag.getMessage(messageKey));
     }
 }

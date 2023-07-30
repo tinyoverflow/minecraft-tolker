@@ -25,7 +25,7 @@ class MessageBuilderTest
     @Test
     void build()
     {
-        Component component = tolker.getMessageBuilder("first")
+        Component component = tolker.build("first")
                 .with("text", "Awesome")
                 .build();
 
