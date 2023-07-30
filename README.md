@@ -10,6 +10,7 @@ interface which allows you to easily compose messages with placeholders in them.
 
 - [Installation](#installation)
   - [Install using Maven](#install-using-maven)
+  - [Install using Gradle](#install-using-gradle)
 - [Usage](#usage)
   - [Message Format](#message-format)
   - [Instantiating Tolker](#instantiating-tolker)
@@ -37,6 +38,20 @@ this package is available on GitHub Packages, it is recommended to use JitPack.
     <artifactId>Repo</artifactId>
     <version><!-- version tag --></version>
 </dependency>
+```
+
+### Install using Gradle
+
+```kotlin
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+
+dependencies {
+    implementation 'com.github.tinyoverflow:tolker:<version tag>'
+}
 ```
 
 ## Usage
