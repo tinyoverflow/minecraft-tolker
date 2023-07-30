@@ -23,6 +23,14 @@
         </repository>
     </repositories>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>Tolker</name>
+            <url>https://maven.pkg.github.com/tinyoverflow/tolker</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>io.papermc.paper</groupId>
