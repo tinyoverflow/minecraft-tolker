@@ -18,10 +18,12 @@ class MessageBuilderTest
     void setUp()
     {
         MemoryBag bag = new MemoryBag();
-        bag.addMessage("demo", "First <text> Message");
+        bag.addMessage("first", "First <text> Message");
         bag.addMessage("number", "Price: $<price:'en-US':'#.00'>");
         bag.addMessage("date", "Christmas: <date:'dd.MM.yyyy'>");
         bag.addMessage("choice", "I met <choice:'0#no developer|1#one developer|1<many developers'>!");
+        bag.addMessage("boolean-true", "Active: <active:'yes':'no'>");
+        bag.addMessage("boolean-false", "Active: <active:'yes':'no'>");
 
         tolker = new Tolker(bag);
         tolker.registerDefaultSerializers();
@@ -71,5 +73,23 @@ class MessageBuilderTest
         assertEquals("I met many developers!", PlainTextComponentSerializer.plainText().serialize(tolker.build("choice")
                 .withChoice("choice", 2)
                 .build()));
+    }
+
+    @Test
+    void buildWithBooleanChoiceFormatter()
+    {
+        assertEquals("Active: yes", PlainTextComponentSerializer.plainText().serialize(tolker.build("boolean-true")
+                .withBool("active", true)
+                .build()));
+
+        assertEquals("Active: no", PlainTextComponentSerializer.plainText().serialize(tolker.build("boolean-false")
+                .withBool("active", false)
+                .build()));
+    }
+
+    @Test
+    void buildWithStaticEmbed() {
+        Component component = tolker.build("static-embed").build();
+        assertEquals("Embed: Plain Message", PlainTextComponentSerializer.plainText().serialize(component));
     }
 }

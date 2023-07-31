@@ -74,6 +74,12 @@ public class MessageBuilder
         return this;
     }
 
+    public MessageBuilder withBool(String key, boolean value)
+    {
+        replacements.add(Formatter.booleanChoice(key, value));
+        return this;
+    }
+
     public Component build()
     {
         TagResolver tagResolver = TagResolver.builder().resolvers(replacements).build();
