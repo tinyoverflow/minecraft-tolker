@@ -6,7 +6,7 @@
 
     <groupId>me.tinyoverflow</groupId>
     <artifactId>tolker</artifactId>
-    <version>0.1.2-SNAPSHOT</version>
+    <version>0.1.3-SNAPSHOT</version>
 
     <description>A Paper library to make messaging buttery smooth.</description>
 

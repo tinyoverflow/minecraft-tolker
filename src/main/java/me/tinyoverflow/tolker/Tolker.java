@@ -2,6 +2,8 @@ package me.tinyoverflow.tolker;
 
 import me.tinyoverflow.tolker.repositories.MessageBag;
 import me.tinyoverflow.tolker.serializer.*;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
 import org.bukkit.Location;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.World;
@@ -34,6 +36,7 @@ public class Tolker
         registerSerializer(Integer.class, new IntegerSerializer());
         registerSerializer(Long.class, new LongSerializer());
         registerSerializer(String.class, new StringSerializer());
+        registerSerializer(TextComponent.class, new ComponentSerializer());
 
         // Minecraft Types
         registerSerializer(ItemStack.class, new ItemStackSerializer());
@@ -43,7 +46,15 @@ public class Tolker
         registerSerializer(World.class, new WorldSerializer());
     }
 
+    @Deprecated(forRemoval = true)
+    /**
+     * @deprecated Use {@code from} instead.
+     */
     public MessageBuilder build(String messageKey) {
+        return from(messageKey);
+    }
+
+    public MessageBuilder from(String messageKey) {
         return new MessageBuilder(serializerMap, messageBag.getMessage(messageKey));
     }
 }

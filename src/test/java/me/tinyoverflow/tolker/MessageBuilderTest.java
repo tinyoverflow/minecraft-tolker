@@ -24,6 +24,8 @@ class MessageBuilderTest
         bag.addMessage("choice", "I met <choice:'0#no developer|1#one developer|1<many developers'>!");
         bag.addMessage("boolean-true", "Active: <active:'yes':'no'>");
         bag.addMessage("boolean-false", "Active: <active:'yes':'no'>");
+        bag.addMessage("plain", "Plain Text");
+        bag.addMessage("static-embed", "Embed: <embed>");
 
         tolker = new Tolker(bag);
         tolker.registerDefaultSerializers();
@@ -88,8 +90,12 @@ class MessageBuilderTest
     }
 
     @Test
-    void buildWithStaticEmbed() {
-        Component component = tolker.build("static-embed").build();
-        assertEquals("Embed: Plain Message", PlainTextComponentSerializer.plainText().serialize(component));
+    void buildWithComponent() {
+        Component embed = tolker.build("plain").build();
+        Component component = tolker.build("static-embed")
+                .with("embed", embed)
+                .build();
+
+        assertEquals("Embed: Plain Text", PlainTextComponentSerializer.plainText().serialize(component));
     }
 }
