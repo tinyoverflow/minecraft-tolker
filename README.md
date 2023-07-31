@@ -109,6 +109,7 @@ class MyPlugin extends JavaPlugin implements Listener
 
         // Create a new Tolker instance
         tolker = new Tolker(messageBag);
+        tolker.registerDefaultSerializers();
 
         getServer().getPluginManager().registerEvents(this, this);
     }
