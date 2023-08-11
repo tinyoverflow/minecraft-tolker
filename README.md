@@ -34,9 +34,9 @@ this package is available on GitHub Packages, it is recommended to use JitPack.
 ```xml
 <!-- Dependency -->
 <dependency>
-    <groupId>com.github.User</groupId>
-    <artifactId>Repo</artifactId>
-    <version><!-- version tag --></version>
+    <groupId>com.github.tinyoverflow</groupId>
+    <artifactId>minecraft-tolker</artifactId>
+    <version><version tag></version>
 </dependency>
 ```
 
@@ -50,7 +50,7 @@ allprojects {
 }
 
 dependencies {
-    implementation 'com.github.tinyoverflow:tolker:<version tag>'
+    implementation 'com.github.tinyoverflow:minecraft-tolker:<version tag>'
 }
 ```
 
