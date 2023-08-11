@@ -1,9 +1,9 @@
 # 💬 Tolker
 
-![GitHub Version](https://img.shields.io/github/v/tag/tinyoverflow/tolker?style=flat-square&label=version)
+![GitHub Version](https://img.shields.io/github/v/tag/tinyoverflow/tolker?style=flat-square&label=Version)
 ![GitHub Issues](https://img.shields.io/github/issues/tinyoverflow/tolker?style=flat-square&label=Issues)
-![GitHub Last Commit](https://img.shields.io/github/last-commit/tinyoverflow/tolker/main?style=flat-square&label=last%20commit)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/tinyoverflow/tolker/maven.yml?style=flat-square&label=build)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/tinyoverflow/tolker/main?style=flat-square&label=Updated)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/tinyoverflow/tolker/maven.yml?style=flat-square&label=Build)
 
 Tolker is an easy-to-use messaging library for Paper. It provides you an
 interface which allows you to easily compose messages with placeholders in them.
