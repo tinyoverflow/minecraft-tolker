@@ -3,7 +3,7 @@
 ![GitHub Version](https://img.shields.io/github/v/tag/tinyoverflow/tolker?style=flat-square&label=version)
 ![GitHub Issues](https://img.shields.io/github/issues/tinyoverflow/tolker?style=flat-square&label=issues)
 ![GitHub Last Commit](https://img.shields.io/github/last-commit/tinyoverflow/tolker/main?style=flat-square&label=updated)
-![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/tinyoverflow/minecraft-tolker/main?style=flat-square&logo=codefactor&label=quality)
+![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/tinyoverflow/minecraft-tolker/main?style=flat-square&label=codefactor)
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/tinyoverflow/tolker/maven.yml?style=flat-square&label=build)
 
 Tolker is an easy-to-use messaging library for Paper. It provides you an
